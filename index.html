@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
+  </head>
+  <body>
+    <form>
+      <div>
+        <label for="file">Choose file to upload</label>
+        <input type="file" id="file" name="file" multiple />
+        <input type="text" name="name" id="name" />
+        <input type="text" name="email" id="email" />
+        <input type="text" name="phone" id="phone" />
+        <input type="text" name="address" id="address" />
+        <input type="submit" />
+      </div>
+      <div>
+        <button>Submit</button>
+      </div>
+    </form>
+    <script>
+      var el = document.querySelector("form");
+
+      function sendemail() {
+        Email.send({
+          SecureToken: "13bb9628-60c1-4de0-8f25-706d24c50d76",
+          To: "will@dataconcepts-inc.com",
+          From: "will@dataconcepts-inc.com",
+          Subject: "This is the subject",
+          Body: `<h1>${name}</h1><p>${email}</p><p>${phone}</p><p>${address}</p>`,
+          Attachments: [
+            {
+              name: "cloud.docx",
+              path: ""
+            }
+          ]
+        }).then(message => alert(message));
+      }
+    </script>
+  </body>
+</html>
